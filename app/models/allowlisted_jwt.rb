@@ -20,4 +20,10 @@
 #  fk_rails_...  (user_id => users.id) ON DELETE => cascade
 #
 class AllowlistedJwt < ApplicationRecord
+  # Associations
+  belongs_to :user
+
+  # Validations
+  validates :jti, presence: true
+  validates :exp, presence: true
 end

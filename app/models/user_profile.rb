@@ -23,4 +23,26 @@
 #  fk_rails_...  (user_id => users.id) ON DELETE => cascade
 #
 class UserProfile < ApplicationRecord
+  # Associations
+  belongs_to :user, touch: true
+  belongs_to :experience_level
+
+  # Validations
+  validates :first_name, presence: true, length: { maximum: 100 }
+  validates :last_name, presence: true, length: { maximum: 100 }
+  validates :phone_number, presence: true, length: { maximum: 50 }
+  validates :date_of_birth, presence: true
+  validate :date_of_birth_has_passed
+  validate :phone_number_format
+
+  private
+
+  # Custom Validations
+  def date_of_birth_has_passed
+    errors.add(:date_of_birth, " can't be in the future") if date_of_birth.present? && date_of_birth > Time.zone.today
+  end
+
+  def phone_number_format
+    errors.add(:phone_number, ' must be valid') unless /\A[+]?\d+\z/ === phone_number
+  end
 end

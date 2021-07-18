@@ -4,6 +4,8 @@
 #
 #  id                   :bigint           not null, primary key
 #  cancel_at_period_end :boolean          not null
+#  current_period_end   :date             not null
+#  current_period_start :date             not null
 #  status               :string           not null
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null

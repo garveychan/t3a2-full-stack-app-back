@@ -6,6 +6,8 @@ class CreateSubscriptions < ActiveRecord::Migration[6.1]
       t.string :subscription_id, null: false
       t.string :status, null: false
       t.boolean :cancel_at_period_end, null: false
+      t.date :current_period_start, null: false
+      t.date :current_period_end, null: false
 
       t.timestamps
     end

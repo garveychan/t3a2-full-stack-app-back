@@ -16,4 +16,7 @@
 #  fk_rails_...  (user_id => users.id) ON DELETE => cascade
 #
 class UserPhoto < ApplicationRecord
+  # Associations
+  belongs_to :user, touch: true
+  has_one_attached :image
 end

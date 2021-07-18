@@ -344,6 +344,8 @@ CREATE TABLE public.subscriptions (
     subscription_id character varying NOT NULL,
     status character varying NOT NULL,
     cancel_at_period_end boolean NOT NULL,
+    current_period_start date NOT NULL,
+    current_period_end date NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );

@@ -16,4 +16,6 @@
 #  fk_rails_...  (user_id => users.id) ON DELETE => cascade
 #
 class CheckIn < ApplicationRecord
+  # Assocations
+  belongs_to :user
 end

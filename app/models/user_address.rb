@@ -21,4 +21,13 @@
 #  fk_rails_...  (user_id => users.id) ON DELETE => cascade
 #
 class UserAddress < ApplicationRecord
+  # Associations
+  belongs_to :user, touch: true
+
+  # Validations
+  validates :street_address, presence: true, length: { maximum: 500 }
+  validates :city, presence: true, length: { maximum: 200 }
+  validates :state, presence: true, length: { maximum: 200 }
+  validates :country, presence: true, length: { maximum: 200 }
+  validates :postcode, presence: true, length: { maximum: 50 }
 end

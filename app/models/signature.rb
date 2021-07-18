@@ -16,4 +16,7 @@
 #  fk_rails_...  (signed_waiver_id => signed_waivers.id) ON DELETE => cascade
 #
 class Signature < ApplicationRecord
+  # Associations
+  belongs_to :signed_waiver
+  has_one_attached :image
 end

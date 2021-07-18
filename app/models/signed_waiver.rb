@@ -19,4 +19,8 @@
 #  fk_rails_...  (waiver_id => waivers.id)
 #
 class SignedWaiver < ApplicationRecord
+  # Associations
+  belongs_to :user
+  belongs_to :waiver
+  has_one :signature, dependent: :destroy
 end

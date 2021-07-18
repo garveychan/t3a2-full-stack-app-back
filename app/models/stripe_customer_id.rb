@@ -17,4 +17,9 @@
 #  fk_rails_...  (user_id => users.id) ON DELETE => cascade
 #
 class StripeCustomerId < ApplicationRecord
+  # Associations
+  belongs_to :user
+
+  # Validations
+  validates :customer_id, presence: true, length: { maximum: 1000 }
 end
