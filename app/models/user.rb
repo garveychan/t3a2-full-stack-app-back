@@ -29,7 +29,7 @@ class User < ApplicationRecord
   has_many :signed_waivers, dependent: :destroy
 
   # Validations
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :encrypted_password, presence: true
   validates_associated :user_profile
   validates_associated :user_address
