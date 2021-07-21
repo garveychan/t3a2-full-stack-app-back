@@ -1,3 +1,5 @@
+require 'faker'
+
 if Rails.env.development?
 
   %w[admin user].each do |role|

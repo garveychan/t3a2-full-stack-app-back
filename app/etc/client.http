@@ -1,4 +1,4 @@
-GET http://localhost:3001/member-data
+GET http://localhost:3001/members
 Accept: application/json
 
 ###
@@ -43,11 +43,11 @@ Origin: http://localhost:3000
 ###
 
 DELETE http://localhost:3001/users/sign_out
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsInByb2ZpbGUiOm51bGwsImF1ZCI6bnVsbCwic3ViIjoiMSIsInNjcCI6InVzZXIiLCJpYXQiOjE2MjY4NjU5MzMsImV4cCI6MTYyNjkwOTEzMywianRpIjoiZjE5MWM3YzgtNzIyNC00OTMyLTllODgtZDk3OTUyZGNjM2NiIn0.hyg8xQS5IjNpqRhcKEaOQvUG-Fw4Y-Urzo1cUlyDqV8
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZW1haWwiOiJ1c2VyQHRlc3QuY29tIiwicHJvZmlsZSI6ZmFsc2UsImFkbWluIjpmYWxzZSwic3ViIjoiMiIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTYyNjg2ODI1MywiZXhwIjoxNjI2OTExNDUzLCJqdGkiOiI4ODk4MWUyOS1lMmU1LTRhNmQtODFkZi0wZmI5YWQxZjZlNmQifQ.2K-bfgPvROvjIB5OcezhX8oDpS-YU8KxeXBYswB6tEY
 
 ###
 
-GET http://localhost:3001/member-data
+GET http://localhost:3001/members
 Origin: http://localhost:3000
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsInByb2ZpbGUiOm51bGwsImFkbWluIjp0cnVlLCJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI2ODY3NDMzLCJleHAiOjE2MjY5MTA2MzMsImp0aSI6Ijg4ODkyYmRhLTZkNTMtNGYwYi1iYWQwLThhMzJhNmE4OGVjNyJ9.7mhk0udfbqIyhsir_0vDVLOy3IsvCwr7E6cpWlZlYls

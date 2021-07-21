@@ -4,5 +4,5 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }, defaults: { format: :json }
 
-  get '/member-data', to: 'members#show'
+  get '/members', to: 'members#show'
 end
