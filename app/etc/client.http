@@ -1,0 +1,54 @@
+GET http://localhost:3001/member-data
+Accept: application/json
+
+###
+
+POST http://localhost:3001/users/sign_in
+Content-Type: application/json
+Origin: http://localhost:3000
+
+{
+    "user": {
+        "email": "test@example.com",
+        "password": "12345678"
+    }
+}
+
+###
+
+POST http://localhost:3001/users/sign_in
+Content-Type: application/json
+Origin: http://localhost:3000
+
+{
+    "user": {
+        "email": "user@test.com",
+        "password": "password"
+    }
+}
+
+###
+
+POST http://localhost:3001/users/sign_in
+Content-Type: application/json
+Origin: http://localhost:3000
+
+{
+    "user": {
+        "email": "admin@test.com",
+        "password": "password"
+    }
+}
+
+###
+
+DELETE http://localhost:3001/users/sign_out
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsInByb2ZpbGUiOm51bGwsImFkbWluIjp0cnVlLCJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI2ODYzNjcxLCJleHAiOjE2MjY5MDY4NzEsImp0aSI6IjQ1NTUxM2FlLTYyY2UtNGZjYy1hNmI5LTY2Zjc0MzUwNjczMCJ9.XhomXlb9Xieru4mHM0e1IAUmzKlx_wkw3GspMbGsFIg
+
+###
+
+GET http://localhost:3001/member-data
+Origin: http://localhost:3000
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsInByb2ZpbGUiOm51bGwsImFkbWluIjp0cnVlLCJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI2ODYzNjcxLCJleHAiOjE2MjY5MDY4NzEsImp0aSI6IjQ1NTUxM2FlLTYyY2UtNGZjYy1hNmI5LTY2Zjc0MzUwNjczMCJ9.XhomXlb9Xieru4mHM0e1IAUmzKlx_wkw3GspMbGsFIg
+

@@ -40,7 +40,12 @@ class User < ApplicationRecord
   enum role: { admin: 'admin', user: 'user' }, _suffix: true, _default: :user
 
   # Authentication
+  include Devise::JWT::RevocationStrategies::Allowlist
   devise :database_authenticatable, :registerable,
          :recoverable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
+
+  def jwt_payload
+    { 'id' => id, 'email' => email, 'profile' => user_profile, 'admin' => admin_role? }
+  end
 end
