@@ -1,24 +1,43 @@
-# README
+# Gym Membership Management System
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Client - 1UP Bouldering Gym
 
-Things you may want to cover:
+<hr>
 
-* Ruby version
+#### Term 3 Assignment 2 - Full Stack Application
 
-* System dependencies
+#### Coder Academy - Fast Track Bootcamp
 
-* Configuration
+#### Developers - Katherine Rock & Garvey Chan
 
-* Database creation
+<hr>
 
-* Database initialization
+#### Deployed Website
 
-* How to run the test suite
+**[1UP Bouldering Gym Portal](https://1upbouldering.app)**
 
-* Services (job queues, cache servers, search engines, etc.)
+### Purpose
 
-* Deployment instructions
+The purpose of this application is to provide an all-in-one solution for managing the membership-related operations of a local bouldering gym, **1 Up Bouldering**, via an intuitive web portal interface.
 
-* ...
+### Documentation
+
+For further details on this app, please visit the comprehensive documentation available at:
+
+<https://github.com/garveycodes/t3a2-full-stack-app-docs/blob/main/README.md>
+
+### Tech Stack
+
+This repository is for the back-end of the application only. The repository for the front-end of the application is available at:
+
+<https://github.com/garveycodes/t3a2-full-stack-app-front>
+
+#### Back-End
+
+- **Ruby on Rails** - Server-side web application framework particularly useful for developing MVPs with quick time-to-market requirements.
+
+- **Rspec Rails** - Testing library for Rails applications based on Rspec.
+
+- **PostgreSQL** - Relational Database Management System.
+
+- **Heroku** - Container-based Cloud Platform as a Service (PaaS) used to deploy, manage, and scale modern apps.
