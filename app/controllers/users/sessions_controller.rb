@@ -4,13 +4,15 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def respond_with(_resource, _opts = {})
-    render json: { message: 'You are logged in.' }, status: :ok
+    render json: { message: 'Login successful.',
+                   user: { id: @user.id,
+                           role: @user.role,
+                           profileComplete: @user.user_profile.present? } },
+           status: :ok
   end
 
   def respond_to_on_destroy
-    log_out_success && return if current_user
-
-    log_out_failure
+    current_user ? log_out_success : log_out_failure
   end
 
   def log_out_success

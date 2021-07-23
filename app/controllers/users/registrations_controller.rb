@@ -8,7 +8,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def register_success
-    render json: { message: 'Signed up sucessfully.' }
+    render json: { message: 'Signup successful.', user: { id: @user.id, role: @user.role } }
   end
 
   def register_failed
