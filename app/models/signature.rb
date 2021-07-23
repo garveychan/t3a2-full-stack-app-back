@@ -3,6 +3,8 @@
 # Table name: signatures
 #
 #  id               :bigint           not null, primary key
+#  name             :string           not null
+#  signatureURI     :text             not null
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  signed_waiver_id :bigint           not null
@@ -18,5 +20,4 @@
 class Signature < ApplicationRecord
   # Associations
   belongs_to :signed_waiver
-  has_one_attached :image
 end

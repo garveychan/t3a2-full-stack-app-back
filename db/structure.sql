@@ -246,6 +246,8 @@ CREATE TABLE public.schema_migrations (
 CREATE TABLE public.signatures (
     id bigint NOT NULL,
     signed_waiver_id bigint NOT NULL,
+    name character varying NOT NULL,
+    "signatureURI" text NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );
