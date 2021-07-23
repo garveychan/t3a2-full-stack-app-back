@@ -19,6 +19,18 @@
 #
 require 'rails_helper'
 
+# KR, 23Jul2021: Test will fail because the dependencies have not been addressed yet 
+
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let(:user_profile) { UserProfile.create(date_of_birth: Date.today, first_name: 'Jane', last_name: 'Smith', phone_number: '12345678', experience_level_id: 1, user_id: 1)}
+
+  let(:user) { User.create(email: 'test@test.com', password: 'password', encrypted_password: 'password', role: 'user') }
+    it 'checks for the presence of values in required login fields for email and password' do
+      expect(user.email).to eq('test@test.com')
+      expect(user.password).to eq('password')
+      expect(user.encrypted_password).to eq('password')
+      expect(user.role).to eq('user')
+      expect(user).to be_valid
+    end
 end
