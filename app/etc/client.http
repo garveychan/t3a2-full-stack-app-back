@@ -59,6 +59,6 @@ Origin: http://localhost:3000
 
 {
     "user": {
-        "email": "garvey.chan@live.com.au"
+        "email": "user@test.com"
     }
 }
