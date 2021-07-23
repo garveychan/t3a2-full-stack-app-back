@@ -52,3 +52,13 @@ Origin: http://localhost:3000
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkB0ZXN0LmNvbSIsInByb2ZpbGUiOm51bGwsImFkbWluIjp0cnVlLCJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI2ODY3NDMzLCJleHAiOjE2MjY5MTA2MzMsImp0aSI6Ijg4ODkyYmRhLTZkNTMtNGYwYi1iYWQwLThhMzJhNmE4OGVjNyJ9.7mhk0udfbqIyhsir_0vDVLOy3IsvCwr7E6cpWlZlYls
 
+###
+POST http://localhost:3001/users/password/
+Content-Type: application/json
+Origin: http://localhost:3000
+
+{
+    "user": {
+        "email": "garvey.chan@live.com.au"
+    }
+}
