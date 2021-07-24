@@ -78,7 +78,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjEsImVtYWlsIjoiYWRtaW5AdGVzd
 GET http://localhost:3001/members/signup_form
 Origin: http://localhost:3000
 
-### Create a new member
+### Populate a new member's profile, address, photo, waiver signature
 
 POST http://localhost:3001/members
 Origin: http://localhost:3000
