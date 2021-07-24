@@ -23,8 +23,6 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  # let(:user_profile) { UserProfile.create(date_of_birth: Date.today, first_name: 'Jane', last_name: 'Smith', phone_number: '12345678', experience_level_id: 1, user_id: 1)}
-
   let(:user) { User.create(email: 'test@test.com', password: 'password', encrypted_password: 'password', role: 'user') }
     it 'checks for the presence of valid values in required login fields for email and password' do
       expect(user.email).to eq('test@test.com')
