@@ -19,5 +19,20 @@
 require 'rails_helper'
 
 RSpec.describe StripeCustomerId, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let(:stripe_customer_id) { StripeCustomerId.create(id: 88,
+  customer_id: '99')}
+
+    it 'checks for the presence of values in required fields for subscription profile' do
+      expect(stripe_customer_id.id).to eq(88)
+      expect(stripe_customer_id.customer_id).to eq('99')
+    end
+
+    it 'checks the subscription is valid' do
+      expect(stripe_customer_id).to be_valid
+    end 
+
+    it 'checks the subscription is an instance of the class Subscription' do
+      expect(stripe_customer_id).to be_an_instance_of(StripeCustomerId)
+    end
 end
