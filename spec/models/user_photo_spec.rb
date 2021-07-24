@@ -18,5 +18,13 @@
 require 'rails_helper'
 
 RSpec.describe UserPhoto, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:userphoto) { UserPhoto.create(user_id: 1) }
+
+  it 'checks the photo is valid' do
+    expect(userphoto).to be_valid
+  end
+
+  it 'checks the photo is an instance of the class Photo' do
+    expect(userphoto).to be_an_instance_of(UserPhoto)
+  end
 end
