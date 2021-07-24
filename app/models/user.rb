@@ -31,9 +31,9 @@ class User < ApplicationRecord
   # Validations
   validates :email, presence: true, uniqueness: true
   validates :encrypted_password, presence: true
-  validates_associated :user_profiles
-  validates_associated :user_addresses
-  validates_associated :user_photos
+  # validates_associated :user_profiles
+  # validates_associated :user_addresses
+  # validates_associated :user_photos
 
   # User Role
   # user.admin_role? user.user_role?
