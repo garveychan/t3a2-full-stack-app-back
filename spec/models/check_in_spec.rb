@@ -18,7 +18,6 @@
 require 'rails_helper'
 
 RSpec.describe CheckIn, type: :model do
-
   let(:checkin) { CheckIn.create }
 
   it 'checks the check-in is valid' do

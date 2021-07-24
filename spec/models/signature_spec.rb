@@ -18,5 +18,13 @@
 require 'rails_helper'
 
 RSpec.describe Signature, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:signature) { Signature.create }
+
+  it 'checks the signature is valid' do
+    expect(signature).to be_valid
+  end
+
+  it 'checks the signature is an instance of the class Signature' do
+    expect(signature).to be_an_instance_of(Signature)
+  end
 end
