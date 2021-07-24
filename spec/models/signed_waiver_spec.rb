@@ -21,5 +21,21 @@
 require 'rails_helper'
 
 RSpec.describe SignedWaiver, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let(:signed_waiver) { SignedWaiver.create(id: 66,
+  user_id: 77, waiver_id: 88)}
+
+    it 'checks for the presence of values in required fields for signed waiver' do
+      expect(signed_waiver.id).to eq(66)
+      expect(signed_waiver.user_id).to eq(77)
+      expect(signed_waiver.waiver_id).to eq(88)
+    end
+
+    it 'checks the signed waiver is valid' do
+      expect(signed_waiver).to be_valid
+    end 
+
+    it 'checks the signed waiver is an instance of the class SignedWaiver' do
+      expect(signed_waiver).to be_an_instance_of(SignedWaiver)
+    end
 end
