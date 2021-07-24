@@ -70,8 +70,13 @@ Content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjEsImVtYWlsIjoiYWRtaW5AdGVzdC5jb20iLCJwcm9maWxlQ29tcGxldGUiOnRydWUsInJvbGUiOiJhZG1pbiIsInN1YiI6IjIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI3MTEyNDkxLCJleHAiOjE2MjcxNTU2OTEsImp0aSI6IjhkOWUzMmNlLWUyMTgtNDBhZC04Yzk1LWNmZjUxYTZmOWNhYSJ9.xmq2_pyD9q2456wYLA242UyJe0FFPh0J6E-33uokA1s
 
 {
-    "id": "2"
+    "id": "19"
 }
+
+### Get new signup form data
+
+GET http://localhost:3001/members/signup_form
+Origin: http://localhost:3000
 
 ### Create a new member
 

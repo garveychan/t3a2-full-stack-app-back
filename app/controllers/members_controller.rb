@@ -1,11 +1,12 @@
 class MembersController < ApplicationController
   include Rails.application.routes.url_helpers
-
+  before_action :authenticate_user!, except: %i[new]
   before_action :set_user, only: %i[show]
 
   def new
-    # return creation form data - experience levels, countries, latest waiver, prices
+    # return creation form data - experience levels, latest waiver, prices
     # no additional authorisation
+    render json: { experienceLevels: ExperienceLevel.all, currentWaiver: Waiver.last }
   end
 
   def create
