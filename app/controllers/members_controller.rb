@@ -1,6 +1,8 @@
 class MembersController < ApplicationController
+  include Rails.application.routes.url_helpers
+
   skip_before_action :authenticate_user!, only: %i[new]
-  before_action :set_member, only: %i[show]
+  before_action :set_user, only: %i[show]
 
   def new
     # return creation form data - experience levels, countries, latest waiver, prices
@@ -17,15 +19,20 @@ class MembersController < ApplicationController
     # return selected member with role, profile, address, photo, waiver signature
     # admin required or current_user matches
 
-    render json: @member
+    render json: constructed_member
   end
 
   def index
     # return list of all members for admin dashboard
     # admin required
-    @members = User.all
 
-    render json: @members
+    @users = User.all
+                 .includes(:user_profile)
+                 .includes(:user_address)
+                 .includes(user_photo: { image_attachment: :blob })
+                 .includes(:signed_waivers)
+
+    render json: @users.map { |user| constructed_member(user) }
   end
 
   def edit
@@ -45,9 +52,15 @@ class MembersController < ApplicationController
 
   private
 
-  def set_member
+  def set_user
     @user = User.find(params[:id])
   end
 
-  def construct_member; end
+  def constructed_member(user = @user)
+    { user: user,
+      profile: user.user_profile,
+      address: user.user_address,
+      photo: (rails_blob_url(user.user_photo.image) if user.user_photo),
+      waiver: user.signed_waivers&.last }
+  end
 end

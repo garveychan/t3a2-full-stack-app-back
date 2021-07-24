@@ -28,16 +28,16 @@ class User < ApplicationRecord
   has_many :allowlisted_jwts, dependent: :destroy
   has_many :signed_waivers, dependent: :destroy
 
+  # User Role
+  # user.admin_role? user.user_role?
+  enum role: { admin: 'admin', user: 'user' }, _suffix: true, _default: :user
+
   # Validations
   validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :encrypted_password, presence: true
   validates_associated :user_profile
   validates_associated :user_address
   validates_associated :user_photo
-
-  # User Role
-  # user.admin_role? user.user_role?
-  enum role: { admin: 'admin', user: 'user' }, _suffix: true, _default: :user
 
   # Authentication
   include Devise::JWT::RevocationStrategies::Allowlist

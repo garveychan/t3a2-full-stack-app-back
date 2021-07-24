@@ -26,6 +26,9 @@ end
 # Custom Gems
 #############################################################################################
 
+# Serializer for JSON responses
+gem 'active_model_serializers'
+
 # Amazon Web Services Image Upload
 gem 'active_storage_validations'
 gem 'aws-sdk-s3', require: false
