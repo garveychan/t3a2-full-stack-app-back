@@ -46,10 +46,18 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   def jwt_payload
-    { 'id' => id, 'email' => email, 'profileComplete' => profile_complete?, 'role' => role }
+    { 'id' => id,
+      'email' => email,
+      'role' => role,
+      'profileComplete' => profile_complete?,
+      'subscribed' => subscribed? }
   end
 
   def profile_complete?
-    admin_role? ? true : !!(user_profile && user_address && user_photo && stripe_customer_id && subscription)
+    user_role? ? !!(user_profile && user_address && user_photo && signed_waivers) : true
+  end
+
+  def subscribed?
+    user_role? ? !!(stripe_customer_id && subscription) : true
   end
 end

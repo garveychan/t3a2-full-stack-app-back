@@ -60,12 +60,28 @@ Origin: http://localhost:3000
 
 GET http://localhost:3001/members
 Origin: http://localhost:3000
-Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjEsImVtYWlsIjoiYWRtaW5AdGVzdC5jb20iLCJwcm9maWxlQ29tcGxldGUiOnRydWUsInJvbGUiOiJhZG1pbiIsInN1YiI6IjIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI3MTEyNDkxLCJleHAiOjE2MjcxNTU2OTEsImp0aSI6IjhkOWUzMmNlLWUyMTgtNDBhZC04Yzk1LWNmZjUxYTZmOWNhYSJ9.xmq2_pyD9q2456wYLA242UyJe0FFPh0J6E-33uokA1s
 
 ### Get selected member
 
-GET http://localhost:3001/members/2
+GET http://localhost:3001/members/show
 Origin: http://localhost:3000
-Accept: application/json
+Content-type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjEsImVtYWlsIjoiYWRtaW5AdGVzdC5jb20iLCJwcm9maWxlQ29tcGxldGUiOnRydWUsInJvbGUiOiJhZG1pbiIsInN1YiI6IjIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI3MTEyNDkxLCJleHAiOjE2MjcxNTU2OTEsImp0aSI6IjhkOWUzMmNlLWUyMTgtNDBhZC04Yzk1LWNmZjUxYTZmOWNhYSJ9.xmq2_pyD9q2456wYLA242UyJe0FFPh0J6E-33uokA1s
+
+{
+    "id": "2"
+}
+
+### Create a new member
+
+POST http://localhost:3001/members
+Origin: http://localhost:3000
+Content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjEsImVtYWlsIjoiYWRtaW5AdGVzdC5jb20iLCJwcm9maWxlQ29tcGxldGUiOnRydWUsInJvbGUiOiJhZG1pbiIsInN1YiI6IjIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI3MTEyNDkxLCJleHAiOjE2MjcxNTU2OTEsImp0aSI6IjhkOWUzMmNlLWUyMTgtNDBhZC04Yzk1LWNmZjUxYTZmOWNhYSJ9.xmq2_pyD9q2456wYLA242UyJe0FFPh0J6E-33uokA1s
+
+{
+    "user": {
+        "email": "user@test.com"
+    }
+}

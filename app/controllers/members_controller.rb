@@ -1,7 +1,6 @@
 class MembersController < ApplicationController
   include Rails.application.routes.url_helpers
 
-  skip_before_action :authenticate_user!, only: %i[new]
   before_action :set_user, only: %i[show]
 
   def new
@@ -33,11 +32,6 @@ class MembersController < ApplicationController
                  .includes(:signed_waivers)
 
     render json: @users.map { |user| constructed_member(user) }
-  end
-
-  def edit
-    # return selected member profile information for editing
-    # admin required or current_user matches
   end
 
   def update
