@@ -520,6 +520,7 @@ CREATE TABLE public.waivers (
     active boolean NOT NULL,
     changelog text NOT NULL,
     content text NOT NULL,
+    declaration text NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL
 );

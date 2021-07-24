@@ -10,7 +10,8 @@ Waiver.create! do |w|
   w.active = true
   w.version = '1.0'
   w.changelog = 'Initial Waiver!'
-  w.content = "### Acknowledgements
+  w.content = "
+  ### Acknowledgements
 
   - You acknowledge and accept that climbing/bouldering is a dangerous recreational activity with obvious risks. You are participating at your own risk.
   - One Up Bouldering provides a safe environment to all participants and utilises state of the art equipment to ensure the safety of all its members. However, as bouldering is inherently a dangerous recreational activity, it is a requirement that all participants sign the waiver below.
@@ -29,7 +30,8 @@ Waiver.create! do |w|
   - I understand and accept the responsibility to review and comply with the rules and regulations, including any changes to these, at One Up Bouldering.
   - I am aware that this waiver is ongoing and will continue to apply to all future occasions I participate with One Up Bouldering.
   - I am at least 18 years of age and have legal capacity to sign this form or I am a parent or legal guardian responsible for the participant who is under the age of 18 years old.
-  - I hereby indemnify and release One Up Bouldering, its directors, its employees, agents and representatives involved in my participation of the recreational activities offered from any legal costs, demand, action or claim for compensation whether for personal injury or damage to property arising from my participation of the activities."
+  - I hereby indemnify and release One Up Bouldering, its directors, its employees, agents and representatives involved in my participation of the recreational activities offered from any legal costs, demand, action or claim for compensation whether for personal injury or damage to property arising from my participation of the activities.
+  "
   w.declaration = 'I have read and understood this form and the terms contained herein and have been provided with clarification on any concerns that I may have in relation to this.'
 end
 
