@@ -240,45 +240,14 @@ CREATE TABLE public.schema_migrations (
 
 
 --
--- Name: signatures; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.signatures (
-    id bigint NOT NULL,
-    signed_waiver_id bigint NOT NULL,
-    name character varying NOT NULL,
-    "signatureURI" text NOT NULL,
-    created_at timestamp(6) without time zone NOT NULL,
-    updated_at timestamp(6) without time zone NOT NULL
-);
-
-
---
--- Name: signatures_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.signatures_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: signatures_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.signatures_id_seq OWNED BY public.signatures.id;
-
-
---
 -- Name: signed_waivers; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE public.signed_waivers (
     id bigint NOT NULL,
     user_id bigint NOT NULL,
+    name character varying NOT NULL,
+    "signatureURI" text NOT NULL,
     created_at timestamp(6) without time zone NOT NULL,
     updated_at timestamp(6) without time zone NOT NULL,
     waiver_id bigint NOT NULL
@@ -588,13 +557,6 @@ ALTER TABLE ONLY public.experience_levels ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- Name: signatures id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.signatures ALTER COLUMN id SET DEFAULT nextval('public.signatures_id_seq'::regclass);
-
-
---
 -- Name: signed_waivers id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -715,14 +677,6 @@ ALTER TABLE ONLY public.schema_migrations
 
 
 --
--- Name: signatures signatures_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.signatures
-    ADD CONSTRAINT signatures_pkey PRIMARY KEY (id);
-
-
---
 -- Name: signed_waivers signed_waivers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -833,13 +787,6 @@ CREATE INDEX index_allowlisted_jwts_on_user_id ON public.allowlisted_jwts USING 
 --
 
 CREATE INDEX index_check_ins_on_user_id ON public.check_ins USING btree (user_id);
-
-
---
--- Name: index_signatures_on_signed_waiver_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_signatures_on_signed_waiver_id ON public.signatures USING btree (signed_waiver_id);
 
 
 --
@@ -984,14 +931,6 @@ ALTER TABLE ONLY public.user_profiles
 
 
 --
--- Name: signatures fk_rails_a921afb8ad; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.signatures
-    ADD CONSTRAINT fk_rails_a921afb8ad FOREIGN KEY (signed_waiver_id) REFERENCES public.signed_waivers(id) ON DELETE CASCADE;
-
-
---
 -- Name: stripe_customer_ids fk_rails_a9aae76a2c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1041,7 +980,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20210718132037'),
 ('20210718135759'),
 ('20210718140129'),
-('20210718140210'),
 ('20210718141213'),
 ('20210718142419');
 
