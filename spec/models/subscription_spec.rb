@@ -23,5 +23,21 @@
 require 'rails_helper'
 
 RSpec.describe Subscription, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:subscription) { Subscription.create(cancel_at_period_end: true, current_period_end: '2021-08-24', current_period_start: '2021-07-24', status: 'active', user_id: 1) }
+
+    it 'checks for the presence of values in required fields for subscription profile' do
+      expect(subscription.cancel_at_period_end).to be_truthy
+      expect(subscription.current_period_end.to_s).to include('2021-08-24')
+      expect(subscription.current_period_start.to_s).to include('2021-07-24')
+      expect(subscription.status).to eq('active')
+      expect(subscription.user_id).to eq(1)
+    end
+
+    it 'checks the subscription is valid' do
+      expect(subscription).to be_valid
+    end 
+
+    it 'checks the subscription is an instance of the class Subscription' do
+      expect(subscription).to be_an_instance_of(Subscription)
+    end
 end
