@@ -1,5 +1,6 @@
 class MembersController < ApplicationController
-  before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: %i[new]
+  before_action :set_member, only: %i[show]
 
   def new
     # return creation form data - experience levels, countries, latest waiver, prices
@@ -15,12 +16,16 @@ class MembersController < ApplicationController
   def show
     # return selected member with role, profile, address, photo, waiver signature
     # admin required or current_user matches
-    render json: { message: "If you see this, you're in!" }
+
+    render json: @member
   end
 
   def index
     # return list of all members for admin dashboard
     # admin required
+    @members = User.all
+
+    render json: @members
   end
 
   def edit
@@ -37,4 +42,12 @@ class MembersController < ApplicationController
     # delete selected member
     # admin required
   end
+
+  private
+
+  def set_member
+    @user = User.find(params[:id])
+  end
+
+  def construct_member; end
 end
