@@ -5,6 +5,7 @@ class CreateWaivers < ActiveRecord::Migration[6.1]
       t.boolean :active, null: false
       t.text :changelog, null: false
       t.text :content, null: false
+      t.text :declaration, null: false
 
       t.timestamps
     end

@@ -1,0 +1,71 @@
+GET http://localhost:3001/members
+Accept: application/json
+
+###
+
+POST http://localhost:3001/users/sign_in
+Content-Type: application/json
+Origin: http://localhost:3000
+
+{
+    "user": {
+        "email": "test@example.com",
+        "password": "12345678"
+    }
+}
+
+###
+
+POST http://localhost:3001/users/sign_in
+Content-Type: application/json
+Origin: http://localhost:3000
+
+{
+    "user": {
+        "email": "user@test.com",
+        "password": "password"
+    }
+}
+
+###
+
+POST http://localhost:3001/users/sign_in
+Content-Type: application/json
+Origin: http://localhost:3000
+
+{
+    "user": {
+        "email": "admin@test.com",
+        "password": "password"
+    }
+}
+
+###
+
+DELETE http://localhost:3001/users/sign_out
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZW1haWwiOiJ1c2VyQHRlc3QuY29tIiwicHJvZmlsZSI6ZmFsc2UsImFkbWluIjpmYWxzZSwic3ViIjoiMiIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTYyNjg2ODI1MywiZXhwIjoxNjI2OTExNDUzLCJqdGkiOiI4ODk4MWUyOS1lMmU1LTRhNmQtODFkZi0wZmI5YWQxZjZlNmQifQ.2K-bfgPvROvjIB5OcezhX8oDpS-YU8KxeXBYswB6tEY
+
+### Get all members
+
+GET http://localhost:3001/members
+Origin: http://localhost:3000
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjIsImVtYWlsIjoidXNlckB0ZXN0LmNvbSIsInByb2ZpbGVDb21wbGV0ZSI6ZmFsc2UsInJvbGUiOiJ1c2VyIiwic3ViIjoiMjIiLCJzY3AiOiJ1c2VyIiwiYXVkIjpudWxsLCJpYXQiOjE2MjcwOTg5MTcsImV4cCI6MTYyNzE0MjExNywianRpIjoiN2E4OTZjYWUtMDQyNi00Yjc2LWI5MjktZDJiNTVmYjQyZWRiIn0.95uJH5KapiIWvYLgWO1pFVgbxjPhWEGZP7wgmbsOPLk
+
+### Get selected member
+
+GET http://localhost:3001/members/1
+Origin: http://localhost:3000
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZW1haWwiOiJ1c2VyQHRlc3QuY29tIiwicHJvZmlsZUNvbXBsZXRlIjpmYWxzZSwicm9sZSI6InVzZXIiLCJzdWIiOiIyIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjI3MDkzODg5LCJleHAiOjE2MjcxMzcwODksImp0aSI6IjgzOTJmMzk2LTQzZTMtNDhjYi1hNTQ1LWM3Y2VmMjIyNTRhZSJ9.Txe6h7xqr9ZIdMPEa2im_7k65AvRkpi1MAIy5P36dvQ 
+
+### Request password reset email
+POST http://localhost:3001/users/password/
+Content-Type: application/json
+Origin: http://localhost:3000
+
+{
+    "user": {
+        "email": "user@test.com"
+    }
+}
