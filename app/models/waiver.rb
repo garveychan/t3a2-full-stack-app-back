@@ -15,8 +15,9 @@ class Waiver < ApplicationRecord
   has_many :signed_waivers, dependent: :nullify
 
   # Validations
-  validates :content, presence: true, length: { maximum: 5000 }
-  validates :changelog, presence: true, length: { maximum: 1000 }
-  validates :version, presence: true, length: { maximum: 100 }
   validates :active, presence: true
+  validates :version, presence: true, length: { maximum: 100 }
+  validates :changelog, presence: true, length: { maximum: 1000 }
+  validates :content, presence: true, length: { maximum: 5000 }
+  validates :declaration, presence: true, length: { maximum: 1000 }
 end
