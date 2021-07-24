@@ -1,5 +1,6 @@
 require 'faker'
 require 'open-uri'
+require 'fileutils'
 
 %w[Novice Intermediate Pro].each do |role|
   ExperienceLevel.create! do |e|
@@ -42,7 +43,7 @@ if Rails.env.development?
 
   # Purge empty folders created by Active Storage (local)
   Dir.glob(Rails.root.join('storage', '**', '*').to_s).sort_by(&:length).reverse.each do |x|
-    Dir.rmdir(x) if File.directory?(x) && Dir.empty?(x)
+    FileUtils.rm_rf(x, secure: true) if File.directory?(x)
   end
 
   def image_fetcher
