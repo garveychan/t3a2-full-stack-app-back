@@ -22,5 +22,22 @@
 require 'rails_helper'
 
 RSpec.describe AllowlistedJwt, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let(:allowlisted_jwt) { AllowlistedJwt.create(aud: 'test_aud_string', exp: '2021-08-24', jti: 'test_jti_string', user_id: 1) }
+
+  it 'checks for the presence of values in required fields for allowed JWTs' do
+    expect(allowlisted_jwt.aud).to eq('test_aud_string')
+    expect(allowlisted_jwt.exp.to_s).to include('2021-08-24')
+    expect(allowlisted_jwt.jti).to eq('test_jti_string')
+    expect(allowlisted_jwt.user_id).to eq(1)
+  end
+
+  it 'checks the allow listed JWT is valid' do
+    expect(allowlisted_jwt).to be_valid
+  end 
+
+  it 'checks the allow listed JWT is an instance of the class AllowlistedJWT' do
+    expect(allowlisted_jwt).to be_an_instance_of(AllowlistedJwt)
+  end
+
 end
