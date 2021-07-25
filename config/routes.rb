@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
     resources :members, only: %i[index create]
     scope :members do
-      get '/signup_form', to: 'members#new'
+      get '/form', to: 'members#new'
       get '/show', to: 'members#show'
       put '/update', to: 'members#update'
       delete '/delete', to: 'members#destroy'
