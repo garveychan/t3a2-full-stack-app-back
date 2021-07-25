@@ -50,14 +50,14 @@ class User < ApplicationRecord
       'email' => email,
       'role' => role,
       'profileComplete' => profile_complete?,
-      'subscribed' => subscribed? }
+      'stripeCustomer' => customer_created? }
   end
 
   def profile_complete?
     user_role? ? !!(user_profile && user_address && user_photo && signed_waivers) : true
   end
 
-  def subscribed?
-    user_role? ? !!(stripe_customer_id && subscription) : true
+  def customer_created?
+    user_role? ? !!stripe_customer_id : true
   end
 end

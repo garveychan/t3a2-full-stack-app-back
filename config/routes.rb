@@ -16,8 +16,8 @@ Rails.application.routes.draw do
     end
 
     scope :payments do
-      get '/checkout', to: 'payments#new'
-      get '/manage', to: 'payments#edit'
+      post '/checkout', to: 'payments#create'
+      post '/manage', to: 'payments#update'
     end
   end
 end

@@ -1,13 +1,36 @@
+require 'stripe'
+
 class PaymentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user
 
   # Create and return Stripe session for purchasing subscription
-  def new
+  def create
+    return unauthorised_response unless user_auth?
+
     Stripe.api_key = Rails.application.credentials.stripe[:secret_key]
 
-    render json: { StripeSession: '12jl3kj1l2k4hl1k2h4lk12j' }, status: :ok
+    price_id = params[:pricingId]
+
+    customer = Stripe::Customer.create
+
+    @user.create_stripe_customer_id!({ customer_id: customer.id })
+
+    session = Stripe::Checkout::Session.create({
+                                                 success_url: "#{Rails.application.credentials.app[:url]}",
+                                                 cancel_url: "#{Rails.application.credentials.app[:url]}",
+                                                 payment_method_types: ['card'],
+                                                 mode: 'subscription',
+                                                 line_items: [{
+                                                   quantity: 1,
+                                                   price: price_id
+                                                 }],
+                                                 customer: customer.id
+                                               })
+
+    render json: { StripeSessionURL: session.url }, status: :ok
   end
 
   # Create and return Stripe portal for managing customer subscription
-  def edit; end
+  def update; end
 end

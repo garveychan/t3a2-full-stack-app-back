@@ -40,7 +40,7 @@ class MembersController < ApplicationController
     @user.create_user_photo!
     @user.user_photo.image.attach(params[:profilePhoto])
 
-    redirect_to checkout_path
+    render json: { message: 'Profile successfully created!' }, status: :ok
   end
 
   def show
@@ -73,7 +73,7 @@ class MembersController < ApplicationController
     end
   end
 
-  protected
+  private
 
   def all_members
     User.all
@@ -91,29 +91,4 @@ class MembersController < ApplicationController
       waiver: user.signed_waivers&.last }
   end
 
-  private
-
-  def set_user
-    @user = User.find(params[:id])
-  end
-
-  def member_params
-    params.permit(:id, :profilePhoto, :profileData)
-  end
-
-  def user_auth?
-    current_user.id == @user.id
-  end
-
-  def admin_auth?
-    current_user.admin_role?
-  end
-
-  def admin_or_user_auth?
-    user_auth? || admin_auth?
-  end
-
-  def unauthorised_response
-    render json: { message: "You're not authorised to do that." }, status: :unauthorized
-  end
 end
