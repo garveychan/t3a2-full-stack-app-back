@@ -25,11 +25,9 @@
 require 'rails_helper'
 
 RSpec.describe UserProfile, type: :model do
-  let(:user) { User.create(email: 'test@test.com', password: 'password', encrypted_password: 'password', role: 'user') }
-
-  let(:experience_level_id) { Experience_level.create! }
 
   let(:user_profile) { UserProfile.create(date_of_birth: '1992-08-23', first_name: 'Jane', last_name: 'Smith', phone_number: '12345678', experience_level_id: 1, user_id: 1) }
+
     it 'checks for the presence of values in required fields for user profile' do
       expect(user_profile.date_of_birth.to_s).to include('1992-08-23')
       expect(user_profile.first_name).to eq('Jane')
@@ -37,7 +35,14 @@ RSpec.describe UserProfile, type: :model do
       expect(user_profile.phone_number).to eq('12345678')
       expect(user_profile.experience_level_id).to eq(1)
       expect(user_profile.user_id).to eq(1)
-      # User profile cannot be validated yet until the dependent validations have been addressed 
-      # expect(user_profile).to be_valid
     end
+
+    it 'checks the user profile is valid' do
+      expect(user_profile).to be_valid
+    end 
+
+    it 'checks the user profile is an instance of the class UserProfile' do
+      expect(user_profile).to be_an_instance_of(UserProfile)
+    end
+    
   end

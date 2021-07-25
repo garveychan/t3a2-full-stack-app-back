@@ -18,5 +18,14 @@
 require 'rails_helper'
 
 RSpec.describe CheckIn, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:checkin) { CheckIn.create }
+
+  it 'checks the check-in is valid' do
+    expect(checkin).to be_valid
+  end
+
+  it 'checks the check-in is an instance of the class CheckIn' do
+    expect(checkin).to be_an_instance_of(CheckIn)
+  end
+
 end

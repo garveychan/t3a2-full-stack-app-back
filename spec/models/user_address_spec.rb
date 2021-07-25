@@ -23,5 +23,23 @@
 require 'rails_helper'
 
 RSpec.describe UserAddress, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  let(:useraddress) { UserAddress.create(city: 'Springfield', country: 'USA', postcode: '8008', state: 'Ohio', street_address: '742 Evergreen Terrace') }
+
+  it 'checks for the presence of valid values' do
+    expect(useraddress.city).to eq('Springfield')
+    expect(useraddress.country).to eq('USA')
+    expect(useraddress.postcode).to eq('8008')
+    expect(useraddress.state).to eq('Ohio')
+    expect(useraddress.street_address).to eq('742 Evergreen Terrace')
+  end
+
+  it 'checks the user address is valid' do
+    expect(useraddress).to be_valid
+  end
+
+  it 'checks the user address is an instance of the class UserAddress' do
+    expect(useraddress).to be_an_instance_of(UserAddress)
+  end
+  
 end
