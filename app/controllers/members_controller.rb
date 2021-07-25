@@ -1,3 +1,5 @@
+require 'json'
+
 class MembersController < ApplicationController
   include Rails.application.routes.url_helpers
   before_action :authenticate_user!, except: %i[new]
@@ -13,15 +15,32 @@ class MembersController < ApplicationController
     # create member profile, address, photo, waiver signature
     # registration handled by devise
     # current_user matches
+    return unauthorised_response unless user_auth?
 
-    puts params
+    @profile = JSON.parse(params[:profileData])
 
-    if user_auth?
+    @user.create_user_profile!({ date_of_birth: @profile['dateOfBirth'],
+                                 first_name: @profile['firstName'],
+                                 last_name: @profile['lastName'],
+                                 phone_number: @profile['phoneNumber'],
+                                 experience_level_id: @profile['climbingExperience'] })
 
-      render json: { message: 'success!' }, status: :ok
-    end
+    @user.create_user_address!({ city: @profile['city'],
+                                 country: @profile['country'],
+                                 postcode: @profile['postcode'],
+                                 state: @profile['state'],
+                                 street_address: @profile['street'] })
 
-    unauthorised_response unless performed?
+    @user.signed_waivers.create!({
+                                   waiver_id: 1,
+                                   name: @profile['waiverName'],
+                                   signatureURI: @profile['waiverSignatureURI']
+                                 })
+
+    @user.create_user_photo!
+    @user.user_photo.image.attach(params[:profilePhoto])
+
+    render json: { message: 'Profile successfully created!' }, status: :ok
   end
 
   def show
@@ -76,6 +95,10 @@ class MembersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def member_params
+    params.permit(:id, :profilePhoto, :profileData)
   end
 
   def user_auth?
