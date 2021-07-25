@@ -29,18 +29,27 @@ class User < ApplicationRecord
   has_many :signed_waivers, dependent: :destroy
 
   # Validations
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: { case_sensitive: false }
   validates :encrypted_password, presence: true
-  validates_associated :user_profiles
-  validates_associated :user_addresses
-  validates_associated :user_photos
+  validates_associated :user_profile
+  validates_associated :user_address
+  validates_associated :user_photo
 
   # User Role
   # user.admin_role? user.user_role?
   enum role: { admin: 'admin', user: 'user' }, _suffix: true, _default: :user
 
   # Authentication
+  include Devise::JWT::RevocationStrategies::Allowlist
   devise :database_authenticatable, :registerable,
          :recoverable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
+
+  def jwt_payload
+    { 'id' => id, 'email' => email, 'profileComplete' => profile_complete?, 'role' => role }
+  end
+
+  def profile_complete?
+    admin_role? ? true : !!(user_profile && user_address && user_photo && stripe_customer_id && subscription)
+  end
 end
