@@ -40,6 +40,13 @@ Origin: http://localhost:3000
     }
 }
 
+### Fetch updated JWT token
+
+GET http://localhost:3001/users/sign_in
+Content-Type: application/json
+Origin: http://localhost:3000
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjIsImVtYWlsIjoidXNlckB0ZXN0LmNvbSIsInJvbGUiOiJ1c2VyIiwicHJvZmlsZUNvbXBsZXRlIjp0cnVlLCJzdWJzY3JpYmVkIjpmYWxzZSwic3ViIjoiMjIiLCJzY3AiOiJ1c2VyIiwiYXVkIjpudWxsLCJpYXQiOjE2MjcxOTg4MTAsImV4cCI6MTYyNzI0MjAxMCwianRpIjoiOWEyOTYwYjAtYTc3Yy00NGE2LWEzZTYtOTk2ZTg4NThiZTliIn0.xrApmGa6Ub1s9jPcsIteYqJSTuWZM7EZe9aTYwr0H4w
+
 ### Sign Out
 
 DELETE http://localhost:3001/users/sign_out
