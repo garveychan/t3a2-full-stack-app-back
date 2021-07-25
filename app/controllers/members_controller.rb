@@ -40,7 +40,7 @@ class MembersController < ApplicationController
     @user.create_user_photo!
     @user.user_photo.image.attach(params[:profilePhoto])
 
-    render json: { message: 'Profile successfully created!' }, status: :ok
+    redirect_to checkout_path
   end
 
   def show

@@ -14,5 +14,10 @@ Rails.application.routes.draw do
       put '/update', to: 'members#update'
       delete '/delete', to: 'members#destroy'
     end
+
+    scope :payments do
+      get '/checkout', to: 'payments#new'
+      get '/manage', to: 'payments#edit'
+    end
   end
 end
