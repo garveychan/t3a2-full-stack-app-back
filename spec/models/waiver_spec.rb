@@ -15,11 +15,12 @@ require 'rails_helper'
 
 RSpec.describe Waiver, type: :model do
 
-  let(:waiver) { Waiver.create(active: true, changelog: 'Updated in response to legal changes', content: 'Sample waiver text', version: '1.0') }
+  let(:waiver) { Waiver.create(active: true, changelog: 'Updated in response to legal changes', content: 'Sample waiver text', declaration: 'test of declaration text', version: '1.0') }
     it 'checks for the presence of valid values' do
       expect(waiver.active).to be_truthy
       expect(waiver.changelog).to eq('Updated in response to legal changes')
       expect(waiver.content).to eq('Sample waiver text')
+      expect(waiver.declaration).to eq('test of declaration text')
       expect(waiver.version).to eq('1.0')
     end
 
