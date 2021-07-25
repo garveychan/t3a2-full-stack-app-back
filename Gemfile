@@ -42,7 +42,6 @@ gem 'stripe'
 # Authentication/Authorisation
 gem 'devise'
 gem 'devise-jwt'
-gem 'pundit'
 
 # Development & Testing
 group :development, :test do
