@@ -1,19 +1,23 @@
 Rails.application.routes.draw do
-  devise_for \
-    :users,
-    controllers: {
-      sessions: 'users/sessions',
-      registrations: 'users/registrations'
-    }, defaults: { format: :json }
+  defaults format: :json do
+    devise_for \
+      :users,
+      controllers: {
+        sessions: 'users/sessions',
+        registrations: 'users/registrations'
+      }
 
-  resources :members do
-    # get 'search', on: :collection
-    # get 'favourites', to: 'favourites#index', on: :collection
-    # post 'favourite', to: 'favourites#create', on: :member
-    # delete 'favourite', to: 'favourites#destroy', on: :member
-    # resources :products, except: :index do
-    #   post 'favourite', to: 'favourites#create', on: :member
-    #   delete 'favourite', to: 'favourites#destroy', on: :member
-    # end
+    resources :members, only: %i[index create]
+    scope :members do
+      get '/form', to: 'members#new'
+      get '/show', to: 'members#show'
+      put '/update', to: 'members#update'
+      delete '/delete', to: 'members#destroy'
+    end
+
+    scope :payments do
+      post '/checkout', to: 'payments#create'
+      post '/manage', to: 'payments#update'
+    end
   end
 end
