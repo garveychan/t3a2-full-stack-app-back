@@ -39,6 +39,9 @@ class User < ApplicationRecord
   validates_associated :user_address
   validates_associated :user_photo
 
+  # Scope Extension
+  scope :checked_in_after, ->(threshold) { joins(:check_ins).where('check_ins.created_at >= ?', threshold).distinct }
+
   # Authentication
   include Devise::JWT::RevocationStrategies::Allowlist
   devise :database_authenticatable, :registerable,
