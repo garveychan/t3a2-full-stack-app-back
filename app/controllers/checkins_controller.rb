@@ -8,9 +8,9 @@ class CheckinsController < MembersController
     # no auth/auth required
     if @user
       @user.check_ins.create!
-      render json: { message: 'Member successfully checked in.' }
+      render json: { message: 'Member successfully checked in.', memberName: @user.user_profile&.first_name }, status: :created
     else
-      render json: { message: 'Member could not be found.' }
+      render json: { message: 'Member could not be found.' }, status: :not_found
     end
   end
 

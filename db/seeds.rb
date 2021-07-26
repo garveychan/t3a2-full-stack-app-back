@@ -1,4 +1,3 @@
-require 'faker'
 require 'open-uri'
 require 'fileutils'
 
@@ -19,6 +18,7 @@ end
 ##################################
 
 if Rails.env.development?
+  require 'faker'
 
   # Purge empty folders created by Active Storage (local)
   Dir.glob(Rails.root.join('storage', '**', '*').to_s).sort_by(&:length).reverse.each do |x|

@@ -17,8 +17,8 @@ class PaymentsController < ApplicationController
     @user.create_stripe_customer_id!({ customer_id: customer.id })
 
     session = Stripe::Checkout::Session.create({
-                                                 success_url: "#{Rails.application.credentials.app[:url]}",
-                                                 cancel_url: "#{Rails.application.credentials.app[:url]}",
+                                                 success_url: Rails.application.credentials.app[:url].to_s,
+                                                 cancel_url: Rails.application.credentials.app[:url].to_s,
                                                  payment_method_types: ['card'],
                                                  mode: 'subscription',
                                                  line_items: [{
