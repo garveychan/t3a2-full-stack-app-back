@@ -8,6 +8,10 @@ class ApplicationController < ActionController::API
     @user = User.find(params[:id])
   end
 
+  def set_user_by_email
+    @user = User.find_by(email: params[:email])
+  end
+
   def member_params
     params.permit(:id, :profilePhoto, :profileData)
   end

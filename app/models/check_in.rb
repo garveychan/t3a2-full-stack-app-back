@@ -20,5 +20,5 @@ class CheckIn < ApplicationRecord
   belongs_to :user
 
   # Scope Extensions
-  scope :today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day) }
+  scope :since, ->(threshold) { where('created_at >= ?', threshold) }
 end

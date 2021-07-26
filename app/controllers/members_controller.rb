@@ -82,10 +82,10 @@ class MembersController < ApplicationController
   end
 
   def constructed_member(user = @user)
-    { user: user,
-      profile: user.user_profile,
-      address: user.user_address,
-      photo: (rails_blob_url(user.user_photo.image) if user.user_photo),
-      waiver: user.signed_waivers&.last }
+    { member: { user: user,
+                profile: user.user_profile,
+                address: user.user_address,
+                photo: (rails_blob_url(user.user_photo.image) if user.user_photo),
+                waiver: user.signed_waivers&.last } }
   end
 end
