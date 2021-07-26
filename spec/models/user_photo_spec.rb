@@ -18,7 +18,9 @@
 require 'rails_helper'
 
 RSpec.describe UserPhoto, type: :model do
-  let(:userphoto) { UserPhoto.create(user_id: 1) }
+  let(:user) { User.create(email: 'test@test.com', password: 'password', encrypted_password: 'password', role: 'user') }
+
+  let(:userphoto) { UserPhoto.create(user_id: user.id) }
 
   it 'checks the photo is valid' do
     expect(userphoto).to be_valid

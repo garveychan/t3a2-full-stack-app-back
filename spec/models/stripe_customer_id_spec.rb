@@ -19,9 +19,10 @@
 require 'rails_helper'
 
 RSpec.describe StripeCustomerId, type: :model do
+  let(:user) { User.create(email: 'test@test.com', password: 'password', encrypted_password: 'password', role: 'user') }
 
   let(:stripe_customer_id) { StripeCustomerId.create(id: 88,
-  customer_id: '99')}
+  customer_id: '99', user_id: user.id)}
 
     it 'checks for the presence of values in required fields for stripe customer ID ' do
       expect(stripe_customer_id.id).to eq(88)

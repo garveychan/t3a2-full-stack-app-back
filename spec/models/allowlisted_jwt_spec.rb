@@ -22,14 +22,15 @@
 require 'rails_helper'
 
 RSpec.describe AllowlistedJwt, type: :model do
+  let(:user) { User.create(email: 'test@test.com', password: 'password', encrypted_password: 'password', role: 'user') }
 
-  let(:allowlisted_jwt) { AllowlistedJwt.create(aud: 'test_aud_string', exp: '2021-08-24', jti: 'test_jti_string', user_id: 1) }
+  let(:allowlisted_jwt) { AllowlistedJwt.create(aud: 'test_aud_string', exp: '2021-08-24', jti: 'test_jti_string', user_id: user.id) }
 
   it 'checks for the presence of values in required fields for allowed JWTs' do
     expect(allowlisted_jwt.aud).to eq('test_aud_string')
     expect(allowlisted_jwt.exp.to_s).to include('2021-08-24')
     expect(allowlisted_jwt.jti).to eq('test_jti_string')
-    expect(allowlisted_jwt.user_id).to eq(1)
+    expect(allowlisted_jwt.user_id).to eq(user.id)
   end
 
   it 'checks the allow listed JWT is valid' do
