@@ -2,7 +2,7 @@ require 'json'
 
 class MembersController < ApplicationController
   include Rails.application.routes.url_helpers
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[new]
   before_action :set_user, only: %i[show create]
 
   def new
