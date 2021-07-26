@@ -1,5 +1,8 @@
-GET http://localhost:3001/members
+### Get onboarding form
+
+GET http://localhost:3001/members/form
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjIsImVtYWlsIjoidXNlckB0ZXN0LmNvbSIsInJvbGUiOiJ1c2VyIiwicHJvZmlsZUNvbXBsZXRlIjpmYWxzZSwic3RyaXBlQ3VzdG9tZXIiOmZhbHNlLCJzdWIiOiIyMiIsInNjcCI6InVzZXIiLCJhdWQiOm51bGwsImlhdCI6MTYyNzI4NjU2MCwiZXhwIjoxNjI3MzI5NzYwLCJqdGkiOiJmMDU1OWFjNS00M2M2LTRlYzgtOWZiOS1kNzhiMTJkNWM1NzQifQ.QoyEslHP2_omTptOM59YVHx1xv1lB396gk7Kqdue71g
 
 ###
 
