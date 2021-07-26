@@ -18,4 +18,7 @@
 class CheckIn < ApplicationRecord
   # Assocations
   belongs_to :user
+
+  # Scope Extensions
+  scope :since, ->(threshold) { where('created_at >= ?', threshold) }
 end

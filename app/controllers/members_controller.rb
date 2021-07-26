@@ -2,7 +2,7 @@ require 'json'
 
 class MembersController < ApplicationController
   include Rails.application.routes.url_helpers
-  before_action :authenticate_user!, except: %i[new]
+  before_action :authenticate_user!
   before_action :set_user, only: %i[show create]
 
   def new
@@ -46,34 +46,32 @@ class MembersController < ApplicationController
   def show
     # return selected member with role, profile, address, photo, waiver signature
     # admin required or current_user matches
-    render json: constructed_member if admin_or_user_auth?
-    unauthorised_response unless performed?
+    return unauthorised_response unless admin_or_user_auth?
+
+    render json: constructed_member
   end
 
   def index
     # return list of all members for admin dashboard
     # admin required
-    render json: all_members.map { |user| constructed_member(user) } if admin_auth?
-    unauthorised_response unless performed?
+    return unauthorised_response unless admin_auth?
+
+    render json: all_members.map { |user| constructed_member(user) }
   end
 
   def update
     # change selected member profile details or other attributes
     # admin required or current_user matches
-    if admin_or_user_auth?
-
-    end
+    return unauthorised_response unless admin_or_user_auth?
   end
 
   def destroy
     # delete selected member
     # admin required or current_user matches
-    if admin_or_user_auth?
-
-    end
+    return unauthorised_response unless admin_or_user_auth?
   end
 
-  private
+  protected
 
   def all_members
     User.all
@@ -84,11 +82,10 @@ class MembersController < ApplicationController
   end
 
   def constructed_member(user = @user)
-    { user: user,
-      profile: user.user_profile,
-      address: user.user_address,
-      photo: (rails_blob_url(user.user_photo.image) if user.user_photo),
-      waiver: user.signed_waivers&.last }
+    { member: { user: user,
+                profile: user.user_profile,
+                address: user.user_address,
+                photo: (rails_blob_url(user.user_photo.image) if user.user_photo),
+                waiver: user.signed_waivers&.last } }
   end
-
 end

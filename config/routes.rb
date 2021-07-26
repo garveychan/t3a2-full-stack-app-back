@@ -19,5 +19,7 @@ Rails.application.routes.draw do
       post '/checkout', to: 'payments#create'
       post '/manage', to: 'payments#update'
     end
+
+    resources :checkins, only: %i[index create]
   end
 end
