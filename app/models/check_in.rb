@@ -18,4 +18,7 @@
 class CheckIn < ApplicationRecord
   # Assocations
   belongs_to :user
+
+  # Scope Extensions
+  scope :today, -> { where('created_at >= ?', Time.zone.now.beginning_of_day) }
 end
