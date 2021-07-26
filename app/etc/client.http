@@ -84,3 +84,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjIsImVtYWlsIjoidXNlckB0ZXN0L
 
 GET http://localhost:3001/members/signup_form
 Origin: http://localhost:3000
+
+### Create checkin
+
+POST http://localhost:3001/checkins
+Origin: http://localhost:3000
+Content-type: application/json
+
+{
+    "email": "user@test.com"
+}
+
+### Get all checkins
+
+GET http://localhost:3001/checkins
+Origin: http://localhost:3000
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MjIsImVtYWlsIjoidXNlckB0ZXN0LmNvbSIsInJvbGUiOiJ1c2VyIiwicHJvZmlsZUNvbXBsZXRlIjp0cnVlLCJzdHJpcGVDdXN0b21lciI6dHJ1ZSwic3ViIjoiMjIiLCJzY3AiOiJ1c2VyIiwiYXVkIjpudWxsLCJpYXQiOjE2MjcyMjYwNzcsImV4cCI6MTYyNzI2OTI3NywianRpIjoiZmY4NmRmYjUtYzJiMC00MTBjLWE5ZjgtYTU2NTM5NmNlZTJkIn0.Q7qZAg9aIANED9iyGc2W5L6PcubN5ySRx3i0FuyiySY
