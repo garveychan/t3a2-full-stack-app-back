@@ -43,12 +43,14 @@ gem 'stripe'
 gem 'devise'
 gem 'devise-jwt'
 
+# Seed Data
+gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
+
 # Development & Testing
 group :development, :test do
   gem 'brakeman'
   gem 'bullet'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'rspec-rails', '~> 5.0.0'
 end
 

@@ -19,7 +19,7 @@ class CheckinsController < MembersController
     # admin required
     return unauthorised_response unless admin_auth?
 
-    render json: { checkinList: all_checkins, members: all_checked_in_members.map do |member|
+    render json: { checkInList: all_checkins.reverse, members: all_checked_in_members.map do |member|
                                                          constructed_member(member)
                                                        end }
   end
@@ -27,7 +27,7 @@ class CheckinsController < MembersController
   private
 
   def threshold
-    10.minutes.ago
+    1.day.ago
   end
 
   def all_checkins
