@@ -18,7 +18,9 @@
 require 'rails_helper'
 
 RSpec.describe CheckIn, type: :model do
-  let(:checkin) { CheckIn.create }
+  let(:user) { User.create(email: 'test@test.com', password: 'password', encrypted_password: 'password', role: 'user') }
+  
+  let(:checkin) { CheckIn.create(user_id: user.id) }
 
   it 'checks the check-in is valid' do
     expect(checkin).to be_valid

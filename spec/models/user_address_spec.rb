@@ -23,8 +23,9 @@
 require 'rails_helper'
 
 RSpec.describe UserAddress, type: :model do
+  let(:user) { User.create(email: 'test@test.com', password: 'password', encrypted_password: 'password', role: 'user') }
 
-  let(:useraddress) { UserAddress.create(city: 'Springfield', country: 'USA', postcode: '8008', state: 'Ohio', street_address: '742 Evergreen Terrace') }
+  let(:useraddress) { UserAddress.create(city: 'Springfield', country: 'USA', postcode: '8008', state: 'Ohio', street_address: '742 Evergreen Terrace', user_id: user.id) }
 
   it 'checks for the presence of valid values' do
     expect(useraddress.city).to eq('Springfield')

@@ -23,15 +23,17 @@
 require 'rails_helper'
 
 RSpec.describe SignedWaiver, type: :model do
+  let(:user) { User.create(email: 'test@test.com', password: 'password', encrypted_password: 'password', role: 'user') }
 
-  let(:signed_waiver) { SignedWaiver.create(id: 66, name: 'Jane', signatureURI: 'test of signature URI', user_id: 77, waiver_id: 88)}
+  let(:waiver) { Waiver.create(active: true, changelog: 'Updated in response to legal changes', content: 'Sample waiver text', declaration: 'test of declaration text', version: '1.0') }
+
+  let(:signed_waiver) { SignedWaiver.create(name: 'Jane', signatureURI: 'test of signature URI', user_id: user.id, waiver_id: waiver.id)}
 
     it 'checks for the presence of values in required fields for signed waiver' do
-      expect(signed_waiver.id).to eq(66)
       expect(signed_waiver.name).to include('Jane')
       expect(signed_waiver.signatureURI).to include('test of signature URI')
-      expect(signed_waiver.user_id).to eq(77)
-      expect(signed_waiver.waiver_id).to eq(88)
+      expect(signed_waiver.user_id).to eq(user.id)
+      expect(signed_waiver.waiver_id).to eq(waiver.id)
     end
 
     it 'checks the signed waiver is valid' do
