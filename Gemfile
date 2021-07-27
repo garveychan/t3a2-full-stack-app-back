@@ -29,6 +29,9 @@ end
 # Serializer for JSON responses
 gem 'active_model_serializers'
 
+# Image Processing
+gem "image_processing"
+
 # Amazon Web Services Image Upload
 gem 'active_storage_validations'
 gem 'aws-sdk-s3', require: false
