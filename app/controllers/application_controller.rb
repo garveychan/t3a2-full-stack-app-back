@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
   include ActionController::MimeResponds
   respond_to :json
-
+  
   protected
 
   def set_user
@@ -31,5 +31,4 @@ class ApplicationController < ActionController::API
   def unauthorised_response
     render json: { message: "You're not authorised to do that." }, status: :unauthorized
   end
-
 end

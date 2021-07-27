@@ -30,7 +30,7 @@ end
 def image_fetcher
   URI.parse(Faker::Avatar.image).open
 rescue StandardError
-  URI.parse('https://robohash.org/sitsequiquia.png?size=300x300&set=set1').open
+  URI.parse('https://robohash.org/sitsequiquia.png?size=300x300&set=set5').open
 end
 
 50.times do |i|
