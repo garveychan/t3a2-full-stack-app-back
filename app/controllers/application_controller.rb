@@ -32,3 +32,7 @@ class ApplicationController < ActionController::API
     render json: { message: "You're not authorised to do that." }, status: :unauthorized
   end
 end
+
+# Protected methods to be inherited by members and payments controllers
+# which serve as an authorisation layer based on the user's role and id.
+# Also included are support methods run before actions to set the user and limit params.

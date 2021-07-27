@@ -40,6 +40,7 @@ class User < ApplicationRecord
   validates_associated :user_photo
 
   # Scope Extension
+  # Find users who are in the check-in response and return a unique set to minimise payload.
   scope :checked_in_after, ->(threshold) { joins(:check_ins).where('check_ins.created_at >= ?', threshold).distinct }
 
   # Authentication
@@ -48,6 +49,7 @@ class User < ApplicationRecord
          :recoverable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
 
+  # Add pertinent information to the jwt payload to inform the front-end's onboarding and auth workflows.
   def jwt_payload
     { 'id' => id,
       'email' => email,
@@ -56,10 +58,12 @@ class User < ApplicationRecord
       'stripeCustomer' => customer_created? }
   end
 
+  # Check if user has associated records.
   def profile_complete?
     user_role? ? !!(user_profile && user_address && user_photo && signed_waivers) : true
   end
 
+  # Check if user has created an account with Stripe.
   def customer_created?
     user_role? ? !!stripe_customer_id : true
   end

@@ -1,10 +1,13 @@
 require 'stripe'
 
 class PaymentsController < ApplicationController
+  # Authenticate and identify user with JWT.
   before_action :authenticate_user!
   before_action :set_user
 
-  # Create and return Stripe session for purchasing subscription
+  # Initialise a Stripe session based on the pricingId received from the request.
+  # Assign the Stripe customer id to the user so a billing portal can be retrieved for that user in the future.
+  # Respond with the Stripe session URL for redirecting the user.
   def create
     return unauthorised_response unless user_auth?
 
@@ -30,7 +33,4 @@ class PaymentsController < ApplicationController
 
     render json: { StripeSessionURL: session.url }, status: :ok
   end
-
-  # Create and return Stripe portal for managing customer subscription
-  def update; end
 end
