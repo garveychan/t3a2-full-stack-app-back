@@ -73,6 +73,8 @@ class MembersController < ApplicationController
 
   protected
 
+  # Eager loading image attachment variant records not possible until Rails 7.0
+  # https://github.com/rails/rails/pull/40842#issuecomment-860050677
   def all_members
     User.all
         .includes(:user_profile)
@@ -85,7 +87,7 @@ class MembersController < ApplicationController
     { member: { user: user,
                 profile: user.user_profile,
                 address: user.user_address,
-                photo: (rails_blob_url(user.user_photo.image) if user.user_photo),
+                photo: polymorphic_url(user.user_photo.image.variant(resize_to_limit: [500, 500]).processed),
                 waiver: user.signed_waivers&.last } }
   end
 end
