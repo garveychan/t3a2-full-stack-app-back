@@ -63,12 +63,38 @@ class MembersController < ApplicationController
   # admin required or current_user matches
   def update
     return unauthorised_response unless admin_or_user_auth?
+
+    @profile = JSON.parse(params[:profileData])
+
+    @user.update(email: @profile['email'])
+
+    @user.user_profile.update( date_of_birth: @profile['dateOfBirth'],
+                                 first_name: @profile['firstName'],
+                                 last_name: @profile['lastName'],
+                                 phone_number: @profile['phoneNumber'],
+                                 experience_level_id: @profile['climbingExperience'] )
+
+    @user.user_address.update( city: @profile['city'],
+                                 country: @profile['country'],
+                                 postcode: @profile['postcode'],
+                                 state: @profile['state'],
+                                 street_address: @profile['street'] )
+
+    @user.user_photo.image.attach(params[:profilePhoto]) if @profile['profilePhoto']
+
+    @user.update(password: @profile['password']) if @profile['password']
+
+    render json: { message: 'Profile successfully updated.' }, status: :ok
   end
 
   # delete selected member
-  # admin required or current_user matches
+  # admin required
   def destroy
-    return unauthorised_response unless admin_or_user_auth?
+    return unauthorised_response unless admin_auth?
+
+    @user.destroy
+
+    render json: { message: 'Profile successfully deleted.' }, status: :ok
   end
 
   protected
