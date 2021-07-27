@@ -5,16 +5,16 @@ class MembersController < ApplicationController
   before_action :authenticate_user!, except: %i[new]
   before_action :set_user, only: %i[show create]
 
+  # return creation form data - experience levels, latest waiver, prices
+  # no additional authorisation
   def new
-    # return creation form data - experience levels, latest waiver, prices
-    # no additional authorisation
     render json: { experienceLevels: ExperienceLevel.all, currentWaiver: Waiver.last }
   end
 
+  # create member profile, address, photo, waiver signature
+  # registration handled by devise
+  # current_user matches
   def create
-    # create member profile, address, photo, waiver signature
-    # registration handled by devise
-    # current_user matches
     return unauthorised_response unless user_auth?
 
     @profile = JSON.parse(params[:profileData])
@@ -43,31 +43,31 @@ class MembersController < ApplicationController
     render json: { message: 'Profile successfully created!' }, status: :ok
   end
 
+  # return selected member with role, profile, address, photo, waiver signature
+  # admin required or current_user matches
   def show
-    # return selected member with role, profile, address, photo, waiver signature
-    # admin required or current_user matches
     return unauthorised_response unless admin_or_user_auth?
 
     render json: constructed_member
   end
 
+  # return list of all members for admin dashboard
+  # admin required
   def index
-    # return list of all members for admin dashboard
-    # admin required
     return unauthorised_response unless admin_auth?
 
     render json: all_members.map { |user| constructed_member(user) }
   end
 
+  # change selected member profile details or other attributes
+  # admin required or current_user matches
   def update
-    # change selected member profile details or other attributes
-    # admin required or current_user matches
     return unauthorised_response unless admin_or_user_auth?
   end
 
+  # delete selected member
+  # admin required or current_user matches
   def destroy
-    # delete selected member
-    # admin required or current_user matches
     return unauthorised_response unless admin_or_user_auth?
   end
 
@@ -83,11 +83,15 @@ class MembersController < ApplicationController
         .includes(:signed_waivers)
   end
 
+  def photo_url(user)
+    user.user_photo ? polymorphic_url(user.user_photo.image.variant(resize_to_limit: [500, 500]).processed) : ''
+  end
+
   def constructed_member(user = @user)
     { member: { user: user,
                 profile: user.user_profile,
                 address: user.user_address,
-                photo: polymorphic_url(user.user_photo.image.variant(resize_to_limit: [500, 500]).processed),
+                photo: photo_url(user),
                 waiver: user.signed_waivers&.last } }
   end
 end
