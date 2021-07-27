@@ -3,7 +3,7 @@ require 'json'
 class MembersController < ApplicationController
   include Rails.application.routes.url_helpers
   before_action :authenticate_user!, except: %i[new]
-  before_action :set_user, only: %i[show create]
+  before_action :set_user, only: %i[show create update]
 
   # return creation form data - experience levels, latest waiver, prices
   # no additional authorisation
@@ -48,7 +48,7 @@ class MembersController < ApplicationController
   def show
     return unauthorised_response unless admin_or_user_auth?
 
-    render json: constructed_member
+    render json: constructed_member.merge({ formQueries: { experienceLevels: ExperienceLevel.all } })
   end
 
   # return list of all members for admin dashboard
