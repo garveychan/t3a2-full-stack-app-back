@@ -33,7 +33,7 @@ class CheckinsController < MembersController
 
   # Specify the age threshold of requested check-ins.
   def threshold
-    1.day.ago
+    1.year.ago
   end
 
   # Return all check-in records after the age threshold.
