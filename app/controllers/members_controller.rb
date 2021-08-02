@@ -47,7 +47,7 @@ class MembersController < ApplicationController
 
   # Respond with the user account, associated profile, address, photo, waiver records,
   # and criteria for populating the edit profile interface.
-  # Only an admin or the user identified by the JWT can access this endpoint. 
+  # Only an admin or the user identified by the JWT can access this endpoint.
   def show
     return unauthorised_response unless admin_or_user_auth?
 
@@ -73,19 +73,19 @@ class MembersController < ApplicationController
 
     @profile = JSON.parse(params[:profileData])
 
-    @user.update(email: @profile['email'])
+    @user.update!(email: @profile['email'])
 
-    @user.user_profile.update( date_of_birth: @profile['dateOfBirth'],
-                                 first_name: @profile['firstName'],
-                                 last_name: @profile['lastName'],
-                                 phone_number: @profile['phoneNumber'],
-                                 experience_level_id: @profile['climbingExperience'] )
+    @user.user_profile.update!(date_of_birth: @profile['dateOfBirth'],
+                              first_name: @profile['firstName'],
+                              last_name: @profile['lastName'],
+                              phone_number: @profile['phoneNumber'],
+                              experience_level_id: @profile['climbingExperience'])
 
-    @user.user_address.update( city: @profile['city'],
-                                 country: @profile['country'],
-                                 postcode: @profile['postcode'],
-                                 state: @profile['state'],
-                                 street_address: @profile['street'] )
+    @user.user_address.update!(city: @profile['city'],
+                              country: @profile['country'],
+                              postcode: @profile['postcode'],
+                              state: @profile['state'],
+                              street_address: @profile['street'])
 
     @user.user_photo.image.attach(params[:profilePhoto]) if @profile['profilePhoto']
 

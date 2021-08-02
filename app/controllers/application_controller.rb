@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::API
   include ActionController::MimeResponds
   respond_to :json
-  
+
+  rescue_from ActiveRecord::RecordInvalid do |exceptions|
+    render json: { errors: exceptions }, status: :internal_server_error
+  end
+
   protected
 
   def set_user

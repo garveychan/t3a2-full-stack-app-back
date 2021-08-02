@@ -39,10 +39,10 @@ class UserProfile < ApplicationRecord
 
   # Custom Validations
   def date_of_birth_has_passed
-    errors.add(:date_of_birth, " can't be in the future") if date_of_birth.present? && date_of_birth > Time.zone.today
+    errors.add(:date_of_birth, "can't be in the future") if date_of_birth.present? && date_of_birth > Time.zone.today
   end
 
   def phone_number_format
-    errors.add(:phone_number, ' must be valid') unless /\A[+]?\d+\z/ === phone_number
+    errors.add(:phone_number, 'must be valid') unless /\A[+]?\d+\z/ === phone_number
   end
 end
