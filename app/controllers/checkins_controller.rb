@@ -8,7 +8,7 @@ class CheckinsController < MembersController
   # Create a new record of a check-in via the email POSTed from the landing page.
   # No authentication or authorisation required, although the associated user must exist.
   def create
-    if @user
+    if @user&.user_profile
       @user.check_ins.create!
       render json: { message: 'Member successfully checked in.', memberName: @user.user_profile&.first_name },
              status: :created

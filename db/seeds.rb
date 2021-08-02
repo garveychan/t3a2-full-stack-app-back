@@ -28,9 +28,10 @@ Waiver.create! do |w|
 end
 
 def image_fetcher
-  URI.parse(Faker::Avatar.image).open
+  URI.parse(Faker::Avatar.image(slug: Faker::Alphanumeric.alpha(number: 10), size: '300x300', format: 'png',
+                                set: 'set5', bgset: 'bg1')).open
 rescue StandardError
-  URI.parse('https://robohash.org/sitsequiquia.png?size=300x300&set=set5').open
+  URI.parse('https://robohash.org/sitsequiquia.png?size=300x300').open
 end
 
 50.times do |i|
@@ -73,4 +74,3 @@ User.create!({ email: 'admin@test.com',
 User.create!({ email: 'user@test.com',
                password: 'password',
                password_confirmation: 'password' })
-
