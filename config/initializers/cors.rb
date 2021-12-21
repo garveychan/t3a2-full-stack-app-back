@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins ['http://localhost:3000', 'https://boulderingcrm.netlify.app']
+    origins ['http://localhost:3000', 'https://bouldering-crm.netlify.app']
 
     resource '*',
              headers: %w[Authorization],
