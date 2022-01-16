@@ -24,7 +24,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'hello@1upbouldering.app'
+  config.mailer_sender = 'postmaster@sandboxeace6600a3da46a683b2de75e523396c.mailgun.org'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

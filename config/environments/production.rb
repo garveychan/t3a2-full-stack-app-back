@@ -11,7 +11,7 @@ Rails.application.configure do
     authentication: :plain
   }
   ActionMailer::Base.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: '1upbouldering.app', protocol: 'https' }
+  config.action_mailer.default_url_options = { host: 'bouldering-crm.netlify.app', protocol: 'https' }
 
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -65,7 +65,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "rails_1up_production"
+  # config.active_job.queue_name_prefix = "rails_bouldering_crm_production"
 
   config.action_mailer.perform_caching = false
 
