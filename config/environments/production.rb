@@ -7,7 +7,7 @@ Rails.application.configure do
     address: mailgun[:MAILGUN_SMTP_SERVER],
     user_name: mailgun[:MAILGUN_SMTP_LOGIN],
     password: mailgun[:MAILGUN_SMTP_PASSWORD],
-    domain: 'one-up-api.herokuapp.com',
+    domain: mailgun[:MAILGUN_DOMAIN],
     authentication: :plain
   }
   ActionMailer::Base.delivery_method = :smtp
